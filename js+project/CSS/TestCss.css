@@ -1,0 +1,344 @@
+/* CSS初始化开始 */
+		* {
+		margin: 0;
+		padding: 0;
+		
+		}
+		ul {
+			list-style: none;
+		}
+		.clearfix:before,.clearfix:after {
+			content:"";
+			display: table;
+		}
+		.clearfix:after {
+			clear: both;
+		}
+		.clearfix {
+			*zoom: 1;
+		}
+		input {
+				border: 0;  /* 所有的表单边框为0 */
+				box-sizing: border-box; /* CSS3盒子模型 border 和 padding 都包含到 width 里面去 */
+			}
+		.container {  /* 因为我们的版心宽度都是1200 都要居中对齐 我们就声明一个公共类 */
+			width: 1200px;
+			margin: 0 auto;
+		}
+	/* CSS初始化结束 */
+		body {
+			background-color: #F3F5F7;
+		}
+		/* header开始 */
+		header {
+			height: 100px;
+			background-color: #f3f5f7;
+			overflow: hidden;
+		}
+		nav {
+			width: 1200px;
+			height: 42px;
+			margin: 26px auto;
+		}
+		.logo {
+			float: left;
+		}
+		.navbar {
+			float: left;
+			
+		}
+		.navbar li {
+			float: left;
+				
+		}
+		.navbar a {
+			text-decoration: none;
+			color: #000;
+			line-height: 42px;
+			margin-left: 35px;
+			display:block;
+			height: 39px;
+		}
+		.navbar a:hover {
+			border-bottom: 3px solid #00a4ff;
+		}
+		.search {
+			width: 410px;
+			height: 40px;
+			float: left;
+			background-color: #FFA500;
+			border: 1px solid #00A4FF;
+			margin-left: 249px;
+		}
+		.search input[type=text] {
+			
+			width: 360px;
+			height: 40px;
+			float: left;
+			
+		}
+		.search input[type=submit] {
+			width: 50px;
+			height: 40px;
+			float: left;
+			background: #00A4FF url(../image/search_06.png) no-repeat center center;	
+		}
+		/* header结束 */
+		
+		
+		/* ++++++++++++banner开始++++++++++ */
+		.banner {
+			height: 420px;
+			background-color: #1c036c;
+		}
+		.banner-in {
+			height: 420px;
+			background: url(../image/banner_03.png) no-repeat;
+			position: relative;
+		}
+		.slidebar {
+			width: 190px;
+			height: 420px;
+			background: rgba(0,0,0,0.3);
+			float: left;
+		}
+		.slidebar a {
+			text-decoration: none;
+			color: #fff;
+			font-size: 16px;
+			padding: 0 20px;
+			display: block;
+			height: 45px;
+			line-height: 45px;
+		}
+		.slidebar a span {
+			float: right;
+			font-family: arial;
+		}
+		.slidebar a:hover {
+			color: #00A4FF;
+		}
+		.kebiao {
+			width: 229px;
+			height: 300px;
+			background-color: #FFFFFF;
+			float: right;
+			margin-top: 50px;
+			box-sizing: border-box;
+			
+		}
+		#wode {
+			height: 48px;
+			color: #FFFFFF;
+			text-align: center;
+			line-height: 48px;
+			font-size: 20px;
+			background-color: #00A4FF;
+			margin-bottom: 10px;
+		}
+		
+		#xuexi div {
+			width: 192px;
+			height: 58px;
+			font-size: 16px;
+			line-height: 58px;
+			margin: 0 auto;
+			border-bottom: 1px solid #eaeaea;
+			
+			
+		}
+		#xuexi a {
+			display: block;
+			text-align: center;
+			text-decoration: none;
+			line-height: 38px;
+			height: 38px;
+			border: 1px solid #00A4FF;
+			color: #00A4FF;
+			transition: all 0.3s;	
+		}
+		#xuexi a:hover {
+			border-color: #FFFFFF;
+			color: #FFFFFF;
+			background-color: #00A4FF;
+		}
+		#xuexi div:last-child {
+			border: 0;
+			height: 38px;
+			margin-top: 15px;
+		}
+		/* 小圆点开始 */
+		.circle {
+			width: 180px;
+			height: 22px;
+			position: absolute;
+			left: 50%;
+			margin-left: -90px;
+			bottom: 10px;
+		}
+		.circle li {
+			float: left;
+			width: 12px;
+			height: 12px;
+			background: rgba(255,255,255,0.6);
+			margin: 6px 8px;
+			border-radius: 50%;
+		}
+		.circle .current {
+			width: 19px;
+			height: 12px;
+			border-radius: 7px;
+			background-color: #FFFFFF;
+		}
+		/* 小圆点结束 */
+		
+		/* ++++++++++++banner结束++++++++++ */
+		
+		/* 精品推荐开始 */
+		.tuijian {
+			height: 60px;
+			background-color: #FFFFFF;
+			margin-top: 8px;
+			box-shadow: 0 2px 2px rgba(0,0,0,0.2);	
+			line-height: 60px;
+			
+			
+		}
+		.tuijian a {
+			
+			padding: 0 30px;
+			border-right: 1px solid #ccc;
+			text-decoration: none;
+			color: #050505;
+
+		}
+		.tuijian a:first-child {
+			font-weight: 700;
+			color: #00a4ff;
+		}
+		.tuijian a:last-child {
+			float: right;
+			color: #00a4ff;
+			border: 0;
+		}
+		.tuijian a:hover {
+			color: #00a4ff;
+		}
+		/* 精品推荐结束 */
+		
+		/* 精品推荐大模块开始 */
+		.prcommend-products {
+			margin-top: 35px;
+		}
+		.recom-hd {
+			height: 40px;
+		}
+		.recom-hd h4 {
+			float: left;
+			color: #494949;
+		}
+		.recom-hd a {
+			float: right;
+			text-decoration: none;
+			margin: 10px 30px 0 0;
+			font-size: 14px;
+			color: #a5a5a5;
+		}
+		.recom-hd a:hover {
+			color: #00A4FF;
+		}
+		
+		.recom-bd ul li {
+			position: relative;
+			width: 228px;
+			height: 270px;
+			background-color: #fff;
+			overflow: hidden;
+			float: left;
+			margin-right: 15px;
+			margin-top: 15px;
+			transition: all 0.2s;
+			
+		}
+		.recom-bd ul li:nth-child(5n) {
+			margin-right: 0;
+		}
+		.recom-bd ul li:hover {
+			box-shadow: 0 5px 6px 3px rgba(0,0,0,0.3);
+			margin-top: 10px;
+		}
+		.recom-bd ul div {
+			width: 60px;
+			height: 54px;
+			background: url(../image/top_tu.gif) no-repeat;
+			position: absolute;
+			left: 0;
+			top: 0;
+		}
+		
+		
+		.recom-bd ul h5 {
+			padding: 24px 20px 15px 24px;
+			font-weight: normal;
+		}
+		.recom-bd ul p {
+			padding: 0 20px 0 24px;
+			color: #999;
+		}
+		.recom-bd ul span {
+			color: orangered;
+		}
+		.recom-bd ul {      /* 学了伸缩布局以后,终于解决这个问题^_^ */
+			display: flex;
+			flex-wrap: wrap;/* 自动换行 */
+		}
+		/* 精品推荐大模块结束 */
+		
+		/* 页面底栏开始 */
+		.footer {
+			width: 100%;
+			height: 270px;
+			background-color: #f3f5f7;
+			margin-top: 90px;
+		}
+		.footer-in {
+			padding-top: 30px;
+		}
+		.footer-in p {
+			width: 433px;
+			height: 50px;
+			color: #999999;
+			margin-top: 20px;
+		}
+		.footer-in a {
+			width: 118px;
+			height: 33px;
+			border: 1px solid #00A4FF;
+			color: #00A4FF;
+			text-decoration: none;
+			line-height: 33px;
+			text-align: center;
+			position: absolute;
+			margin-top: 15px;
+		}
+		.footer-in a:hover {
+			border: 0;
+			background-color: #00A4FF;
+			color: #EAEAEA;
+		}
+		.footer-1 {
+			float: left;
+		}
+		.footer-r {
+			float: right;
+		}
+		.footer-r dt {
+			font-weight: 700;
+			color: #494949;
+			margin-bottom: 10px;
+		}
+		.footer-r dd {
+			color: #494949;
+		}
+		/* 页面底栏结束 */
+		

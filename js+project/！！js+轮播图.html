@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>轮播图</title>
+	</head>
+	<style>
+		* {
+		    padding: 0;
+		    margin: 0;
+		    list-style: none;
+		    border: 0;
+		}
+		
+		.all {
+		    width: 500px;
+		    height: 200px;
+		    padding: 7px;
+		    border: 1px solid #ccc;
+		    margin: 100px auto;
+		    position: relative;
+		}
+		
+		.screen {
+		    width: 500px;
+		    height: 200px;
+		    overflow: hidden;
+		    position: relative;
+		}
+		
+		.screen li {
+		    width: 500px;
+		    height: 200px;
+		    overflow: hidden;
+		    float: left;
+		}
+		
+		.screen ul {
+		    position: absolute;
+		    left: 0;
+		    top: 0px;
+		    width: 3000px;
+		}
+		
+		.all ol {
+		    position: absolute;
+		    right: 10px;
+		    bottom: 10px;
+		    line-height: 20px;
+		    text-align: center;
+		}
+		
+		.all ol li {
+		    float: left;
+		    width: 20px;
+		    height: 20px;
+		    background: #fff;
+		    border: 1px solid #ccc;
+		    margin-left: 10px;
+		    cursor: pointer;
+		}
+		
+		.all ol li.current {
+		    background: yellow;
+		}
+		
+		#arr {
+		    display: none;
+		    z-index: 1000;
+		
+		}
+		
+		#arr span {
+		    width: 40px;
+		    height: 40px;
+		    position: absolute;
+		    left: 5px;
+		    top: 50%;
+		    margin-top: -20px;
+		    background: #000;
+		    cursor: pointer;
+		    line-height: 40px;
+		    text-align: center;
+		    font-weight: bold;
+		    font-family: '黑体';
+		    font-size: 30px;
+		    color: #fff;
+		    opacity: 0.3;
+		    border: 1px solid #fff;
+		}
+		
+		#arr #right {
+		    right: 5px;
+		    left: auto;
+		}
+		
+	</style>
+	<body>
+		<div id="box" class="all">
+		    <div class="screen">
+		        <ul>
+		            <li><img src="image/wf1.jpg" width="500" height="200"/></li>
+		            <li><img src="image/wf2.jpg" width="500" height="200"/></li>
+		            <li><img src="image/wf3.jpg" width="500" height="200"/></li>
+		            <li><img src="image/wf4.jpg" width="500" height="200"/></li>
+		            <li><img src="image/wf5.jpg" width="500" height="200"/></li>
+		        </ul>
+		        <ol>
+		        </ol>
+		    </div>
+		    <div id="arr"><span id="left">&lt;</span><span id="right">&gt;</span></div>
+		</div>
+		
+
+
+
+
+		<script src="JavaScript/common.js"></script>
+		<script src="JavaScript/animate.js"></script>
+		<script type="text/javascript">
+				/* 	1、动态生成序号
+					2、点击序号以动画的方式切换图片
+					3、鼠标放到盒子上显示箭头
+					4、实现左箭头和右箭头的切换功能
+					5、自动切换图片 */
+			
+			 // 获取元素
+			  var box = my$('box');
+			  var screen = box.children[0];
+			  var ul = screen.children[0];
+			  var ol = screen.children[1];
+			
+			
+			  // 箭头 arrow
+			  var arr = my$('arr');
+			  var arrLeft = my$('left');
+			  var arrRight = my$('right');
+			
+			  // 图片的宽度
+			  var imgWidth = screen.offsetWidth;
+			  
+			
+			  // 1、动态生成序号++++++++++++++++++
+			  // 页面上总共有多少张图片    5   不包括后面克隆的li
+			  var count = ul.children.length;//这个count值为页面加载时,图片的张数。"没有算上后面添加的克隆第一张"
+			  for (var i = 0; i < count; i++) {
+			    var li = document.createElement('li');//创建这些序号块
+			    ol.appendChild(li);
+			    setInnerText(li, i + 1);//给这些序号块添加文字
+				
+				// 页面加载时，让序号1高亮显示
+				ol.children[0].className = 'current';
+				
+				
+			    // 2、点击序号 动画的方式 切换图片++++++++++++++++++++
+			    li.onclick = liClick;//liClick是一个函数名，因为函数的创建一半都不要写在循环里，否则会占用内存		 
+			    // 设置标签的自定义属性index,让当前li记录它的索引
+			    li.setAttribute('index', i);
+			  }
+			  
+			  function liClick() {
+			    // 2.1 取消其它li的高亮显示，让当前li高亮显示
+			    for (var i = 0; i < ol.children.length; i++) {
+			      var li = ol.children[i];
+			      li.className = '';
+			    }
+			    // 让当前li高亮显示
+			    this.className = 'current';
+				
+			    // 2.2 点击序号，切换图片，根据自定义属性index的值（这里是自定义属性index，不是全局变量哦）动画的方式切换到当前点击的图片位置
+			    // 获取自定义属性
+			    var liIndex = parseInt(this.getAttribute('index'));/* 获取当前点击的li的index属性值,字符串转换成整数"因为getAttribute获取的是字符串类型" */
+			    animate(ul, -liIndex * imgWidth);
+			
+			    // 全局变量index  和 当前被点击的li中的index保持一致
+			    index = liIndex;//这里不是定义，变量提升,故存在index
+			  }
+			  
+			
+			  
+			  // 3、鼠标放到盒子上显示箭头,（并暂停自动轮播）++++++++++++++++
+			  box.onmouseenter = function () {
+			    arr.style.display = 'block';
+			    // 清除自动切换图片的定时器,暂停轮播
+			    clearInterval(timerId);
+			  }
+			
+			  box.onmouseleave = function () {
+			    arr.style.display = 'none';
+			    // 鼠标离开重新开启定时器,继续轮播
+			    timerId = setInterval(function () {
+			      arrRight.click();
+			    }, 2000);
+			  }
+			  
+			  
+			  // 4、实现上一张和下一张的功能+++++++++++++++++ 
+			  var index = 0;// 全局变量index用来记录小序号索引的全局变量index第一次定义并初始化
+			  // 点击右箭头时---------先判断当前位置:是否是伪第一张？是否是1~4张？是否是最后一张？
+			  arrRight.onclick = function () {
+			    // 判断是否是克隆的第一张图片，如果是克隆的第一张图片，此时修改ul的坐标，显示真正的第一张图片
+			    if (index === count) {//就是判断当前图片是否是克隆的第一张图片"伪第一张"
+			      ul.style.left = '0px';//悄悄换成真正第一张
+			      index = 0;//初始化索引
+			    }
+			    // 总共有6张图片，显示5张，因为还有一张克隆的图片  克隆的图片的索引是5
+			    index++;//这里是设定了将要切换到的序号索引,
+				//如果是1~5张图(第6张是克隆的),则以动画的方式实现切换
+			    if (index < count) {//这是++之后的index哦,++之后还小于count说明切换前位置在前四张
+			        // 获取图片对应的序号，让序号点击,实现切换
+			        ol.children[index].click();
+			    } else {
+			      //否则当前位置就是最后一张图片5 以动画的方式，移动到克隆的第一张图片6
+			      animate(ul, -index * imgWidth);
+			      // 取消所有序号的高亮显示，让序号1高亮显示
+			      for (var i = 0; i < ol.children.length; i++) {
+			        var li = ol.children[i];
+			        li.className = '';
+			      }
+			      ol.children[0].className = 'current';
+			    }
+				
+			  }
+			  
+			  
+			  // 点击左箭头时-----------
+			  arrLeft.onclick = function () {
+			    // 点击左箭头时先判断，如果当前是第一张图片，此时要偷偷的切换到克隆的第一张图片“伪第一张”的位置再滑动
+			    if (index === 0) {
+			      index = count;//count是显示图片的张数,因为count是序号li的个数,而克隆时并没有生成额外li序号
+			      ul.style.left = - index * imgWidth + 'px';//不用动画,直接切换到"最后一张"的位置
+			    }
+			
+			    index--;//让index的索引真实显示将要切换到的图片序号块索引(第5张)
+			    ol.children[index].click();//然后模拟点击一下前一个序号块
+			  }
+			
+			
+			
+			  // 无缝滚动   克隆第一张图片放到最后
+			  // 获取ul中的第一个li
+			  var firstLi = ul.children[0];
+			  // 克隆节点用cloneNode()方法 		var cloneLi = firstLi.cloneNode(deep);  
+			  //       							firstLi 将要被克隆的节点
+			  //       							cloneLi 克隆生成的副本节点
+              //参数： deep是否采用深度克隆,如果为true,则该节点的所有后代节点也都会被克隆,如果为false,则只克隆该节点本身.                   
+			  var cloneLi = firstLi.cloneNode(true);
+			  ul.appendChild(cloneLi);
+			
+			
+			  // 5 自动切换图片++++++++++++++++++++       写一个闹钟计时器就ok啦^_^
+			  var timerId = setInterval(function () {
+			    // 切换到下一张图片
+			    arrRight.click();
+			  }, 2000);
+
+		</script>
+	</body>
+</html>
